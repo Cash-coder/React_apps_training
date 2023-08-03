@@ -1,44 +1,42 @@
-import { useState } from "react";
-import "./styles.css";
+import Question from "./Question";
+import './App.css';
 
-const images = [
-  "https://images.pexels.com/photos/3836292/pexels-photo-3836292.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  "https://images.pexels.com/photos/2792157/pexels-photo-2792157.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  "https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-];
-
-export default function App() {
-  const [current, setCurrent] = useState(0);
-
-  function nextSlide() {
-    setCurrent(current === images.length - 1 ? 0 : current + 1);
-  }
-
-  function prevSlide() {
-    setCurrent(current === 0 ? images.length - 1 : current - 1);
-  }
-
+export default function App(){
   return (
-      <div>
-        <h2>Project 1: Carousel</h2>
-        <div className="slider">
-          <div className="left-arrow" onClick={prevSlide}>
-            ⬅
+      <>
+        <h1>FAQ accordion</h1>
+        <div className="container">
+          <h2>Frequently asked questions</h2>
+          <div className="questions">
+            {questions.map((q) => (
+                <Question
+                    key={q.id}
+                    question={q}
+                />
+            ))}
           </div>
-          <div className="right-arrow" onClick={nextSlide}>
-            ⮕
-          </div>
-          {images.map(
-              (image, index) =>
-                  current === index && (
-                      <div key={image} className="slide">
-                        <img src={image} alt="images" />
-                      </div>
-                  )
-          )}
         </div>
-      </div>
-  );
+      </>
+  )
 }
+
+const questions = [
+  {
+    id: 1,
+    title: "Is this a good product?",
+    info:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+  },
+  {
+    id: 2,
+    title: "How much does it cost?",
+    info:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+  },
+  {
+    id: 3,
+    title: "When can I get it?",
+    info:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem."
+  }
+];
